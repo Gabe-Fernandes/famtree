@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using famtree.Data;
 
@@ -11,9 +12,11 @@ using famtree.Data;
 namespace famtree.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230720232253_FamilyMemberPropsUpdated1")]
+    partial class FamilyMemberPropsUpdated1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -71,9 +74,6 @@ namespace famtree.Migrations
 
                     b.Property<int>("PartnerId")
                         .HasColumnType("int");
-
-                    b.Property<string>("PartnersName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Pfp")
                         .HasColumnType("nvarchar(max)");

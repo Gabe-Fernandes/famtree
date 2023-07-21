@@ -1,0 +1,365 @@
+﻿@import "_library.scss";
+
+* {
+  margin: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  padding: 0px;
+  font-family: "Trebuchet MS", "Times New Roman";
+  text-decoration: none;
+  color: $cWhite;
+}
+
+html {
+  transition: font-size 0.25s;
+}
+
+body {
+  background-color: $cBackground;
+}
+
+input, select, option, textarea {
+  color: black;
+}
+
+.hide {
+  opacity: 0% !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  display: none;
+}
+
+.disable {
+  filter: brightness(50%);
+  pointer-events: none;
+}
+
+nav {
+  @include Flex-Row(flex-start, center);
+  width: 100vw;
+  height: 10vh;
+  background-color: $cHeader;
+  font-size: 1.5em;
+  position: fixed;
+  z-index: $zNavbar;
+  .nav-btn {
+    @include Flex-Row(center, center, 18%, 100%);
+    text-align: center;
+    a {
+      @include Flex-Row(center, center, 100%, 100%);
+      transition: transform 0.39s, box-shadow 0.39s, background-color 0.39s;
+      &:hover, &:focus {
+        background-color: $cHighlightStrong;
+        box-shadow: 4px 3px 22px 2px rgba(0,0,0, 0.5);
+        transform: scale(1.02);
+      }
+      &:active {
+        transform: scale(0.94);
+      }
+    }
+  }
+  .nav-highlight {
+    border-bottom: 0.4em solid $cHighlightStrong;
+    border-radius: 0.4em;
+    margin-bottom: -0.4em;
+  }
+}
+
+.nav-space {
+  width: 100vw;
+  height: 10vh;
+}
+
+// solution-specific
+nav {
+  .profile-link {
+    margin: 0vh 3vw 0vh auto;
+  }
+  .logout-btn {
+    margin-right: 3vw;
+  }
+}
+
+.title-wrap {
+  @include Flex-Col(center, center, 100vw, 10vh);
+}
+
+.btn {
+  cursor: pointer;
+  transition: filter 0.25s;
+  padding: 0.4em 1em;
+  font-size: 1.1em;
+  border-radius: 1em;
+  background: $cHighlightSoft;
+}
+.btn:hover {
+  filter: brightness(115%);
+}
+.btn:active {
+  transform: scale(0.94);
+  transform: translateY(5%);
+  box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}
+
+.text-btn {
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 1.1em;
+}
+
+input {
+  text-indent: 10%;
+  border-radius: 1em;
+  font-size: 1.2rem;
+}
+
+select {
+  border-radius: 0.3em;
+  font-size: 1.2em;
+}
+// <section></section> outside of <main></main>
+.screen-tint {
+  width: 100vw;
+  height: 100vh;
+  display: initial;
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: $zScreenTint;
+  transition: opacity 0.3s, background-color 0.3s;
+}
+// applies to main
+.unclickable {
+  pointer-events: none;
+  filter: blur(0.2em);
+}
+
+.err-input {
+  border: 0.2em solid $cWarning;
+  box-shadow: 0 0 0.1em 0.1em $cWarning;
+}
+
+.err {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 0.7em;
+  padding: 0.2em 0.5em;
+  border-radius: 0.4em;
+  background-color: $cTableRow;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+::-webkit-scrollbar {
+  width: 0.7em;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 0.5em grey;
+  border-radius: 0.5em;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $cHeader;
+  border-radius: 0.5em;
+}
+
+.confirmation-wrap {
+    @include Flex-Col(center, center, 24vw, 30vh);
+    background-color: $cHeader;
+    box-shadow: 0 0 0.2em 0.2em $cHeader;
+    border-radius: 0.6em;
+    margin: 0vh auto;
+  span {
+    font-size: 1.2em;
+    width: 80%;
+    text-align: center;
+  }
+  .confirmation {
+    @include Confirmation(6em);
+    margin-top: 4vh;
+  }
+}
+
+
+
+
+
+
+
+#manageUsers {
+  .search-container {
+    @include Flex-Row(center, center, 80vw, 10vh);
+    border-radius: 1.2em;
+    background-color: $cHeader;
+    margin: 4vh auto;
+    .left-div {
+      @include Flex-Row(center, center, 70%, 100%);
+      .inner-left-div {
+        @include Flex-Row(center, center, 50%, 100%);
+        .input-err-wrap {
+          @include Flex-Row(center, center, 80%, 5vh);
+          position: relative;
+          margin: 2vh 0vw;
+          input[type=text] {
+            @include WidthHeight(100%, 100%);
+            border-radius: 0.6em;
+            text-indent: 5%;
+            font-size: 1em;
+            margin: 0 1vw;
+          }
+        }
+      }
+      .inner-right-div {
+        @include Flex-Row(center, center, 50%, 100%);
+        font-size: 1.2em;
+        label {
+          margin-left: 5vw;
+        }
+      }
+    }
+    .right-div {
+      @include Flex-Row(center, center, 30%, 100%);
+    }
+    #searchBtn {
+      background-color: $cHighlightStrong;
+    }
+  }
+  
+  .table-wrap {
+    @include TableWrap(80vw, 60vh, $cTableRow, $cTableRowOff, $cHeader, $cHighlightStrong, false);
+    margin: 0 auto;
+    .checkMark {
+      @include Confirmation(1.4em);
+    }
+    .xMark {
+      @include Invalid(1.4em);
+    }
+    button {
+      font-size: 1em;
+    }
+  }
+
+  // mobile styles
+  @media (max-width: $bmaxTablet) {
+    .search-container {
+      flex-direction: column;
+      height: 30vh;
+      .left-div {
+        flex-direction: column;
+        width: 100%;
+        .inner-left-div {
+          width: 100%;
+        }
+      }
+      .inner-right-div {
+        font-size: 1em;
+      }
+    }
+  }
+
+  // general mobile styles
+@media (max-width: $bmaxTablet) {
+  // table
+  .table-wrap {
+    @include Flex-Row(center, flex-start, 100vw, 100%);
+    table {
+      width: 50vw;
+      thead {
+        display: none;
+      }
+      td {
+        @include Flex-Col(center, center, 50vw, 10vh);
+        padding: 0px;
+      }
+      td:first-of-type {
+        background-color: $cHeader;
+      }
+    }
+  }
+}
+}
+
+@media (max-width: $bmaxTablet) {
+  nav {
+    #mobileNavBtn {
+      margin: 0vh 5vw 0vh auto;
+      img {
+        @include Img-Round(1.2em);
+      }
+    }
+    .mobileNavContainer {
+      @include Flex-Col(center, center, 55vw, 60vh);
+      background-color: $cTableRowOff;
+      border-radius: 0.8em;
+      transition: right 0.3s;
+      position: absolute;
+      top: 12vh;
+      right: -200vw;
+      border: $cHeader 2px solid;
+      div {
+        @include Flex-Row(center, center, 80%, 25%);
+        margin: 0px;
+      }
+    }
+    .slide-mobile-nav {
+      right: 5vw;
+    }
+  }
+}
+
+#removeUserModal {
+  .modal-background {
+    @include Modal(30vw, 30vh, $cHeader);
+    position: relative;
+    label {
+      margin-top: 6vh;
+      font-size: 1.2em;
+    }
+    .modal-options {
+      @include Flex-Row(center, center, 100%, 50%);
+      button {
+        margin: 0px 3vw;
+      }
+    }
+    .close-btn{
+      @include CloseBtn(2em);
+    }
+  }
+}
+
+// hide mobile html
+@media (min-width: $bminLaptop) {
+  .mobile-ele {
+    opacity: 0% !important;
+    pointer-events: none !important;
+    position: absolute !important;
+    display: none;
+  }
+}
+
+// make this part of site.scss
+@media (max-width: $bmaxMobileSmall) {
+  html{ font-size: 10px; }
+}
+@media (min-width: $bminMobileMedium) and (max-width: $bmaxMobileMedium) {
+  html{ font-size: 10px; }
+}
+@media (min-width: $bminMobileLarge) and (max-width: $bmaxMobileLarge) {
+  html { font-size: 10px; }
+}
+@media (min-width: $bminTablet) and (max-width: $bmaxTablet) {
+  html{ font-size: 13px; }
+}
+@media (min-width: $bminLaptop) and (max-width: $bmaxLaptop) {
+  html{ font-size: 14px; }
+}
+@media (min-width: $bminLaptopLarge) and (max-width: $bmaxLaptopLarge) {
+  html{ font-size: 16px; }
+}
+@media (min-width: $bmin4k) {
+  html{ font-size: 32px; }
+}

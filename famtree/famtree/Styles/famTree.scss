@@ -1,0 +1,46 @@
+﻿@import "_library.scss";
+
+#famTree {
+.tree {
+  @include Grid-Col(15vw 15vw 15vw 15vw 15vw, 40vh, 3vh, 2vw);
+  margin-top: 5vh;
+  justify-content: center;
+}
+
+.member-card {
+  @include Flex-Col(center, center, 15vw, 40vh);
+  background-color: #181e36;
+  div, ul {
+    margin: 1vh 0vw;
+  }
+  img {
+    @include Img-Round(7rem);
+    margin: 2vh 0vw;
+  }
+}
+
+.mid-info-modal {
+  @include Flex-Row(center, center, 35vw, 40vh);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #181e36;
+  border-radius: 0.4rem;
+  .left-div, .right-div {
+    @include Flex-Col(center, center, 100%, 100%);
+    div, ul {
+      margin: 1vh 0vw;
+    }
+    img {
+      @include Img-Round(7rem);
+      margin: 2vh 0vw;
+    }
+  }
+}
+.add-wrap {
+  position: absolute;
+  top: 10vh;
+  right: 3vw;
+}
+}

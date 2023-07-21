@@ -1,0 +1,20 @@
+﻿@import "_library.scss";
+
+#addMember {
+  form {
+    @include Flex-Col(center, center, 50vw, 100%);
+    margin: 0 auto;
+    input {
+      border-radius: 0.65rem;
+      margin: 1vh 0vw;
+    }
+    textarea {
+      @include WidthHeight(60vw, 10vh);
+      resize: none;
+      border-radius: 0.65rem;
+      margin: 2vh 0vw;
+      text-indent: 2%;
+      padding: 1%;
+    }
+  }
+}

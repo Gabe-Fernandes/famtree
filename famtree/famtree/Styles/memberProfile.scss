@@ -1,0 +1,41 @@
+﻿@import "_library.scss";
+
+#memberProfile {
+.title-wrap {
+  margin-top: 7vh;
+}
+
+.pfp-div {
+  @include Flex-Col(center, center, 100%, 100%);
+  div, ul {
+    margin: 1vh 0vw;
+  }
+  img {
+    @include Img-Round(7rem);
+    margin: 2vh 0vw;
+  }
+}
+
+.info-div {
+  @include Flex-Row(center, center, 100%, 100%);
+  margin: 2vh 0vw;
+  .left-div, .middle-div, .right-div {
+    @include Flex-Col(center, center, 100%, 100%);
+    div, ul {
+      margin: 1vh 0vw;
+    }
+  }
+}
+
+.longtext {
+  @include Flex-Col(center, center, 100vw, 20vh);
+  label {
+    @include WidthHeight(80%, 100%);
+    text-align: center;
+  }
+}
+
+u {
+  text-decoration: underline;
+}
+}

@@ -1,8 +1,54 @@
 ﻿@{
-    ViewData["Title"] = "Family Tree";
+  ViewData["Title"] = "Family Tree";
+  List<FamilyMember> fam = ViewData["fam"] as List<FamilyMember>;
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<script async src="/js/famTree.js"></script>
+
+<div id="famTree">
+  <section class="tree">
+    <div class="add-wrap">
+      <a class="btn" asp-controller="FamTree" asp-action="AddMember">Add Family Member</a>
+    </div>
+    @{
+      for (int i = 0; i < fam.Count; i++)
+      {
+        <div class="member-card" data-index="@i">
+          <div>@fam[i].FirstName @fam[i].LastName</div>
+          <div>"@fam[i].Nickname"</div>
+          <img src="@fam[i].Pfp">
+          <div>@fam[i].DOB.ToString("d") - @fam[i].DOP.ToString("d")</div>
+        </div>
+
+        <section id="modal_@i" class="screen-tint hide">
+          <div class="mid-info-modal">
+
+            <div class="left-div">
+              <div>@fam[i].FirstName @fam[i].LastName</div>
+              <div>"@fam[i].Nickname"</div>
+              <img src="@fam[i].Pfp">
+              <div>@fam[i].DOB.ToString("d") - @fam[i].DOP.ToString("d")</div>
+            </div>
+
+            <div class="right-div">
+              <div>Cities Lived: </div>
+              <ul>
+                <li>Columbus</li>
+                <li>Rowan</li>
+                <li>São Carlos</li>
+                <li>Frostburg</li>
+                <li>Pitman</li>
+              </ul>
+              <div>Partner: Rachael Carlin</div>
+              <div>He trained capoeira.</div>
+            </div>
+
+            <div class="close-btn"><img src="/icons/X_512x512.png" tabindex="0" id="demoCloseBtn" /></div>
+            <a class="btn" asp-controller="FamTree" asp-action="MemberProfile">View Profile</a>
+          </div>
+        </section>
+      }
+    }
+  </section>
+
 </div>

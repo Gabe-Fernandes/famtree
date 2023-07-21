@@ -1,1 +1,66 @@
-﻿
+﻿@{
+  ViewData["Title"] = "Profile";
+  FamilyMember member = (FamilyMember)ViewData["member"];
+  //string partnersName = (string)ViewData["partner"];
+}
+
+<div id="memberProfile">
+  <div class="title-wrap">
+    <h1>@member.FirstName @member.LastName</h1>
+    <h2>"@member.Nickname"</h2>
+  </div>
+
+  <div class="pfp-div">
+    <img src="@member.Pfp">
+    <div>@member.DOB.ToString("d") - @member.DOP.ToString("d")</div>
+    <div><u>Born:</u> @member.BirthLocation</div>
+    <div><u>Partner:</u> @member.PartnersName</div>
+    <div><u>Occupation:</u> @member.Occupation</div>
+    <div><u>Education:</u> @member.Education</div>
+  </div>
+
+  <div class="info-div">
+
+    <div class="left-div">
+      <div>Cities Lived: </div>
+      <ul>
+        <li>Columbus, USA</li>
+        <li>Glassboro, USA</li>
+        <li>São Carlos, Brazil</li>
+        <li>Frostburg, USA</li>
+        <li>Pitman, USA</li>
+      </ul>
+    </div>
+
+    <div class="middle-div">
+      <div>Interests: </div>
+      <ul>
+        <li>video games</li>
+        <li>music</li>
+        <li>capoeira</li>
+      </ul>
+    </div>
+
+    <div class="right-div">
+      <div>Languages Spoken: </div>
+      <ul>
+        <li>English</li>
+        <li>Portuguese</li>
+        <li>Learning Spanish</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="info-div longtext">
+    <div>Anecdotes:</div>
+    <br>
+    <label>@member.Anecdotes</label>
+  </div>
+
+  <div class="info-div longtext">
+    <div>Bio:</div>
+    <br>
+    <label>@member.Bio</label>
+  </div>
+</div>
