@@ -1,6 +1,6 @@
 ﻿@import "_library.scss";
 
-#addMember {
+#addOrEditMember {
   form {
     @include Flex-Col(center, center, 50vw, 100%);
     margin: 0 auto;

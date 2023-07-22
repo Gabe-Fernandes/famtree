@@ -55,5 +55,10 @@
 #memberProfile u {
   text-decoration: underline;
 }
+#memberProfile .back-btn-wrap {
+  position: absolute;
+  top: 10vh;
+  right: 3vw;
+}
 
 /*# sourceMappingURL=memberProfile.css.map */

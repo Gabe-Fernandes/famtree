@@ -1,24 +1,104 @@
-#addMember form {
+#famTree .tree {
+  display: grid;
+  grid-template-columns: 15vw 15vw 15vw 15vw 15vw;
+  grid-auto-rows: 40vh;
+  row-gap: 3vh;
+  column-gap: 2vw;
+  margin-top: 5vh;
+  justify-content: center;
+}
+#famTree .member-card {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 50vw;
-  height: 100%;
-  margin: 0 auto;
+  width: 15vw;
+  height: 40vh;
+  background-color: #181e36;
+  cursor: pointer;
 }
-#addMember form input {
-  border-radius: 0.65rem;
+#famTree .member-card div, #famTree .member-card ul {
   margin: 1vh 0vw;
 }
-#addMember form textarea {
-  width: 60vw;
-  height: 10vh;
-  resize: none;
-  border-radius: 0.65rem;
+#famTree .member-card img {
+  height: 7rem;
+  width: 7rem;
+  min-height: 7rem;
+  min-width: 7rem;
+  border-radius: 50%;
   margin: 2vh 0vw;
-  text-indent: 2%;
-  padding: 1%;
+}
+#famTree .mid-info-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 35vw;
+  height: 60vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #181e36;
+  border-radius: 0.4rem;
+}
+#famTree .mid-info-modal .top-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80%;
+}
+#famTree .mid-info-modal .top-div .left-div, #famTree .mid-info-modal .top-div .right-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+#famTree .mid-info-modal .top-div .left-div div, #famTree .mid-info-modal .top-div .left-div ul, #famTree .mid-info-modal .top-div .right-div div, #famTree .mid-info-modal .top-div .right-div ul {
+  margin: 1vh 0vw;
+}
+#famTree .mid-info-modal .top-div .left-div img, #famTree .mid-info-modal .top-div .right-div img {
+  height: 7rem;
+  width: 7rem;
+  min-height: 7rem;
+  min-width: 7rem;
+  border-radius: 50%;
+  margin: 2vh 0vw;
+}
+#famTree .mid-info-modal .control-pannel .danger {
+  background-color: #781d1d;
+}
+#famTree .mid-info-modal .control-pannel a {
+  margin: 0vh 1vw;
+}
+#famTree .add-wrap {
+  position: absolute;
+  top: 10vh;
+  right: 3vw;
+}
+#famTree .close-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1.1rem;
+  height: 1.1rem;
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  margin: 0em 0.5em;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 1em;
+}
+#famTree .close-btn img {
+  height: 2.2rem;
+  width: 2.2rem;
+  min-height: 2.2rem;
+  min-width: 2.2rem;
+  border-radius: 50%;
 }
 
 /*# sourceMappingURL=famTree.css.map */

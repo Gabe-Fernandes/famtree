@@ -1,0 +1,24 @@
+#addOrEditMember form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50vw;
+  height: 100%;
+  margin: 0 auto;
+}
+#addOrEditMember form input {
+  border-radius: 0.65rem;
+  margin: 1vh 0vw;
+}
+#addOrEditMember form textarea {
+  width: 60vw;
+  height: 10vh;
+  resize: none;
+  border-radius: 0.65rem;
+  margin: 2vh 0vw;
+  text-indent: 2%;
+  padding: 1%;
+}
+
+/*# sourceMappingURL=addOrEditMember.css.map */

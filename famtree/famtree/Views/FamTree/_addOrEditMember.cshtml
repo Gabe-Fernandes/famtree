@@ -1,0 +1,47 @@
+﻿@model FamilyMember;
+@using famtree.Services;
+
+@{
+  string aspAction = (string)ViewData[Str.AspAction];
+  string btnText = (string)ViewData[Str.BtnText];
+}
+
+<div id="addOrEditMember">
+
+  <div class="title-wrap">
+    <h1>Add Family Member</h1>
+  </div>
+
+  <form method="post" asp-controller="FamTree" asp-action="@aspAction">
+    <input asp-for="Id" type="hidden" />
+
+    <input asp-for="FirstName" type="text" placeholder="first name" />
+    <input asp-for="LastName" type="text" placeholder="last name" />
+    <input asp-for="Nickname" type="text" placeholder="nickname" />
+    <input asp-for="Pfp" type="text" placeholder="profile picture" />
+    <label>Date of Birth</label>
+    <input asp-for="DOB" type="date" />
+    <label>Date of Passing</label>
+    <input asp-for="DOP" type="date" />
+    <label>Has not passed</label><input asp-for="IsAlive" type="checkbox" />
+    <!--
+      <input asp-for="PartnerId" type="text" placeholder="partner" />
+    -->
+    <input asp-for="BirthLocation" type="text" placeholder="city of birth" />
+    <input asp-for="Occupation" type="text" placeholder="occupation" />
+    <input asp-for="PartnersName" type="text" placeholder="partner" />
+
+    <br>
+    <label>Education:</label>
+    <textarea asp-for="Education" type="text"></textarea>
+    <label>Anecdotes:</label>
+    <textarea asp-for="Anecdotes" type="text"></textarea>
+    <label>Bio:</label>
+    <textarea asp-for="Bio" type="text"></textarea>
+    <div class="btn-wrap">
+      <button type="submit" class="btn">@btnText</button>
+      <a asp-controller="FamTree" asp-action="FamTree" class="btn">Back</a>
+    </div>
+  </form>
+
+</div>

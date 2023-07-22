@@ -1,0 +1,17 @@
+﻿@import "_library.scss";
+
+#deleteMember {
+  form {
+    @include Flex-Col(center, center, 50vw, 20vh);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    .btn-wrap {
+      @include Flex-Row(center, center, 100%, 100%);
+      .btn {
+        margin: 0vh 1vw;
+      }
+    }
+  }
+}

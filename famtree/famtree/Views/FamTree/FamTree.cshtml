@@ -1,6 +1,8 @@
-﻿@{
+﻿@using famtree.Services;
+@{
   ViewData["Title"] = "Family Tree";
-  List<FamilyMember> fam = ViewData["fam"] as List<FamilyMember>;
+  List<FamilyMember> fam = ViewData[Str.Fam] as List<FamilyMember>;
+  List<string> citiesLived = new();
 }
 
 <script async src="/js/famTree.js"></script>
@@ -13,38 +15,49 @@
     @{
       for (int i = 0; i < fam.Count; i++)
       {
+        string dateOfPassing = (fam[i].IsAlive) ? "present" : @fam[i].DOP.ToString("d");
+        string nickname = string.IsNullOrEmpty(fam[i].Nickname) ? "" : $"\"{fam[i].Nickname}\"";
+        citiesLived = Str.ExtractData(fam[i].CitiesLived);
+
         <div class="member-card" data-index="@i">
           <div>@fam[i].FirstName @fam[i].LastName</div>
-          <div>"@fam[i].Nickname"</div>
+          <div>@nickname</div>
           <img src="@fam[i].Pfp">
-          <div>@fam[i].DOB.ToString("d") - @fam[i].DOP.ToString("d")</div>
+          <div>@fam[i].DOB.ToString("d") - @dateOfPassing</div>
         </div>
 
         <section id="modal_@i" class="screen-tint hide">
           <div class="mid-info-modal">
+            <div class="top-div">
+              <div class="left-div">
+                <div>@fam[i].FirstName @fam[i].LastName</div>
+                <div>@nickname</div>
+                <img src="@fam[i].Pfp">
 
-            <div class="left-div">
-              <div>@fam[i].FirstName @fam[i].LastName</div>
-              <div>"@fam[i].Nickname"</div>
-              <img src="@fam[i].Pfp">
-              <div>@fam[i].DOB.ToString("d") - @fam[i].DOP.ToString("d")</div>
+                <div>@fam[i].DOB.ToString("d") - @dateOfPassing</div>
+              </div>
+
+              <div class="right-div">
+                <div>Cities Lived: </div>
+                <ul>
+                  @{
+                    for (int j = 0; j < citiesLived.Count; j++)
+                    {
+                      <li>@citiesLived[j]</li>
+                    }
+                  }
+                </ul>
+                <div>Partner: @fam[i].PartnersName</div>
+              </div>
             </div>
 
-            <div class="right-div">
-              <div>Cities Lived: </div>
-              <ul>
-                <li>Columbus</li>
-                <li>Rowan</li>
-                <li>São Carlos</li>
-                <li>Frostburg</li>
-                <li>Pitman</li>
-              </ul>
-              <div>Partner: Rachael Carlin</div>
-              <div>He trained capoeira.</div>
+            <div class="control-pannel">
+              <a class="btn" asp-controller="FamTree" asp-action="MemberProfile" asp-route-memberId="@fam[i].Id">View Profile</a>
+              <a class="btn" asp-controller="FamTree" asp-action="EditMember" asp-route-memberId="@fam[i].Id">Edit Profile</a>
+              <a class="btn danger" asp-controller="FamTree" asp-action="DeleteMember" asp-route-memberId="@fam[i].Id">Delete</a>
             </div>
 
-            <div class="close-btn"><img src="/icons/X_512x512.png" tabindex="0" id="demoCloseBtn" /></div>
-            <a class="btn" asp-controller="FamTree" asp-action="MemberProfile">View Profile</a>
+            <div id="closeBtn_@i" class="close-btn"><img src="/icons/X_512x512.png" tabindex="0" id="demoCloseBtn" /></div>
           </div>
         </section>
       }

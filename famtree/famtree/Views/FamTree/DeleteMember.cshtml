@@ -1,0 +1,15 @@
+﻿@model FamilyMember;
+@{
+  ViewData["Title"] = "Confirm Delete";
+}
+
+<div id="deleteMember">
+  <form method="post" asp-action="DeleteMember">
+    <input asp-for="Id" hidden />
+    <label>Are you sure you want to remove @Model.FirstName @Model.LastName?</label>
+    <div class="btn-wrap">
+      <button type="submit" class="btn">Yes</button>
+      <a class="btn" asp-controller="FamTree" asp-action="FamTree">No</a>
+    </div>
+  </form>
+</div>

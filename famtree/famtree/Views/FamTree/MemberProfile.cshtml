@@ -1,22 +1,37 @@
-﻿@{
+﻿@using famtree.Services;
+@model FamilyMember;
+
+@{
   ViewData["Title"] = "Profile";
-  FamilyMember member = (FamilyMember)ViewData["member"];
+
+  List<string> children = Str.ExtractData(Model.Children);
+  List<string> citiesLived = Str.ExtractData(Model.CitiesLived);
+  List<string> interests = Str.ExtractData(Model.Interests);
+  List<string> languages = Str.ExtractData(Model.LanguagesSpoken);
+
   //string partnersName = (string)ViewData["partner"];
 }
 
 <div id="memberProfile">
+  <div class="back-btn-wrap">
+    <a class="btn" asp-controller="FamTree" asp-action="FamTree">Back To Family Tree</a>
+  </div>
+
   <div class="title-wrap">
-    <h1>@member.FirstName @member.LastName</h1>
-    <h2>"@member.Nickname"</h2>
+    <h1>@Model.FirstName @Model.LastName</h1>
+    @if (string.IsNullOrEmpty(Model.Nickname) == false)
+    {
+      <h2>"@Model.Nickname"</h2>
+    }
   </div>
 
   <div class="pfp-div">
-    <img src="@member.Pfp">
-    <div>@member.DOB.ToString("d") - @member.DOP.ToString("d")</div>
-    <div><u>Born:</u> @member.BirthLocation</div>
-    <div><u>Partner:</u> @member.PartnersName</div>
-    <div><u>Occupation:</u> @member.Occupation</div>
-    <div><u>Education:</u> @member.Education</div>
+    <img src="@Model.Pfp">
+    <div>@Model.DOB.ToString("d") - @Model.DOP.ToString("d")</div>
+    <div><u>Born:</u> @Model.BirthLocation</div>
+    <div><u>Partner:</u> @Model.PartnersName</div>
+    <div><u>Occupation:</u> @Model.Occupation</div>
+    <div><u>Education:</u> @Model.Education</div>
   </div>
 
   <div class="info-div">
@@ -24,29 +39,36 @@
     <div class="left-div">
       <div>Cities Lived: </div>
       <ul>
-        <li>Columbus, USA</li>
-        <li>Glassboro, USA</li>
-        <li>São Carlos, Brazil</li>
-        <li>Frostburg, USA</li>
-        <li>Pitman, USA</li>
+        @{
+          for (int i = 0; i < citiesLived.Count; i++)
+          {
+            <li>@citiesLived[i]</li>
+          }
+        }
       </ul>
     </div>
 
     <div class="middle-div">
       <div>Interests: </div>
       <ul>
-        <li>video games</li>
-        <li>music</li>
-        <li>capoeira</li>
+        @{
+          for (int i = 0; i < interests.Count; i++)
+          {
+            <li>@interests[i]</li>
+          }
+        }
       </ul>
     </div>
 
     <div class="right-div">
       <div>Languages Spoken: </div>
       <ul>
-        <li>English</li>
-        <li>Portuguese</li>
-        <li>Learning Spanish</li>
+        @{
+          for (int i = 0; i < languages.Count; i++)
+          {
+            <li>@languages[i]</li>
+          }
+        }
       </ul>
     </div>
 
@@ -55,12 +77,12 @@
   <div class="info-div longtext">
     <div>Anecdotes:</div>
     <br>
-    <label>@member.Anecdotes</label>
+    <label>@Model.Anecdotes</label>
   </div>
 
   <div class="info-div longtext">
     <div>Bio:</div>
     <br>
-    <label>@member.Bio</label>
+    <label>@Model.Bio</label>
   </div>
 </div>
