@@ -29,7 +29,7 @@
   margin: 0vh 1vw;
   cursor: pointer;
 }
-#addOrEditMember form .list-item-wrap {
+#addOrEditMember form .list-item-wrap, #addOrEditMember form .list-header-wrap {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,6 +43,9 @@
   justify-content: center;
   width: 100%;
   height: 100%;
+}
+#addOrEditMember form .child-dragging, #addOrEditMember form .city-dragging, #addOrEditMember form .interest-dragging, #addOrEditMember form .language-dragging {
+  opacity: 0.5;
 }
 
 /*# sourceMappingURL=addOrEditMember.css.map */

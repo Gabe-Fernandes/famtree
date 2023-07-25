@@ -40,15 +40,15 @@
 
     <br>
 
-    <div class="list-item-wrap">
+    <div class="list-header-wrap">
       <label>Children:</label>
-      <img tabindex="0" src="/icons/Plus.png" class="add-input" data-placeholder="children" />
+      <img tabindex="0" src="/icons/Plus.png" class="add-input" data-placeholder="child" />
     </div>
-    <div class="list-wrap">
+    <div class="list-wrap child-drag-container">
       @for (int i = 0; i < children.Count; i++)
       {
-        <div class="list-item-wrap">
-          <input type="text" placeholder="children" value="@children[i]" />
+        <div class="list-item-wrap draggable" draggable="true">
+          <input type="text" placeholder="child" value="@children[i]" />
           <img tabindex="0" src="/icons/X_512x512.png" class="del-input" />
         </div>
       }
@@ -59,15 +59,15 @@
 
     <div hidden id="dataFromServer" data-delimiter="@Str.delimiter"></div>
 
-    <div class="list-item-wrap">
+    <div class="list-header-wrap">
       <label>Cities Lived:</label>
-      <img tabindex="0" src="/icons/Plus.png" class="add-input" data-placeholder="cities lived in" />
+      <img tabindex="0" src="/icons/Plus.png" class="add-input" data-placeholder="city" />
     </div>
-    <div class="list-wrap">
+    <div class="list-wrap city-drag-container">
       @for (int i = 0; i < citiesLived.Count; i++)
       {
-        <div class="list-item-wrap">
-          <input type="text" placeholder="cities lived in" value="@citiesLived[i]" />
+        <div class="list-item-wrap draggable" draggable="true">
+          <input type="text" placeholder="city" value="@citiesLived[i]" />
           <img tabindex="0" src="/icons/X_512x512.png" class="del-input" />
         </div>
       }
@@ -76,15 +76,15 @@
 
     <br>
 
-    <div class="list-item-wrap">
+    <div class="list-header-wrap">
       <label>Interests:</label>
-      <img tabindex="0" src="/icons/Plus.png" class="add-input" data-placeholder="interests" />
+      <img tabindex="0" src="/icons/Plus.png" class="add-input" data-placeholder="interest" />
     </div>
-    <div class="list-wrap">
+    <div class="list-wrap interest-drag-container">
       @for (int i = 0; i < interests.Count; i++)
       {
-        <div class="list-item-wrap">
-          <input type="text" placeholder="interests" value="@interests[i]" />
+        <div class="list-item-wrap draggable" draggable="true">
+          <input type="text" placeholder="interest" value="@interests[i]" />
           <img tabindex="0" src="/icons/X_512x512.png" class="del-input" />
         </div>
       }
@@ -93,15 +93,15 @@
 
     <br>
 
-    <div class="list-item-wrap">
+    <div class="list-header-wrap">
       <label>Languages Spoken:</label>
-      <img tabindex="0" src="/icons/Plus.png" class="add-input" data-placeholder="languages spoken" />
+      <img tabindex="0" src="/icons/Plus.png" class="add-input" data-placeholder="language" />
     </div>
-    <div class="list-wrap">
+    <div class="list-wrap language-drag-container">
       @for (int i = 0; i < languages.Count; i++)
       {
-        <div class="list-item-wrap">
-          <input type="text" placeholder="languages spoken" value="@languages[i]" />
+        <div class="list-item-wrap draggable" draggable="true">
+          <input type="text" placeholder="language" value="@languages[i]" />
           <img tabindex="0" src="/icons/X_512x512.png" class="del-input" />
         </div>
       }

@@ -1,31 +1,26 @@
 ﻿$(function () {
-  function refreshDelEvents() {
+  function refreshListItemEvents() {
     $(".del-inputs").off("click.delInputs");
     $(".del-input").on("click.delInputs", (event) => {
       $(event.target).parent(".list-item-wrap").remove();
     });
+
+    $(".list-item-wrap").off("dragstart");
+    $(".list-item-wrap").off("dragend");
+    $(".list-item-wrap").on("dragstart", (event) => {
+      $(event.target).addClass(`${$(event.target).children("input").attr("placeholder")}-dragging`);
+    });
+    $(".list-item-wrap").on("dragend", (event) => {
+      $(event.target).removeClass(`${$(event.target).children("input").attr("placeholder") }-dragging`);
+    });
   }
-  // initialize delete/add btn events
-  refreshDelEvents();
-
-  $(".add-input").on("click", (event) => {
-    $(event.target).parent().next().append(`
-      <div class="list-item-wrap">
-        <input type="text" placeholder="${$(event.target).attr("data-placeholder")}" />
-        <img tabindex="0" src="/icons/X_512x512.png" class="del-input" />
-      </div>
-    `);
-    refreshDelEvents();
-  });
-
-
 
   // populate input element with string arr data as single string to send to server
   $("#famMemberForm").on("submit", () => {
-    $("#sendChildrenToServer").val(generateDataString($(".list-item-wrap").children("input"), "children"));
-    $("#sendCitiesToServer").val(generateDataString($(".list-item-wrap").children("input"), "cities lived in"));
-    $("#sendInterestsToServer").val(generateDataString($(".list-item-wrap").children("input"), "interests"));
-    $("#sendLanguagesToServer").val(generateDataString($(".list-item-wrap").children("input"), "languages spoken"));
+    $("#sendChildrenToServer").val(generateDataString($(".list-item-wrap").children("input"), "child"));
+    $("#sendCitiesToServer").val(generateDataString($(".list-item-wrap").children("input"), "city"));
+    $("#sendInterestsToServer").val(generateDataString($(".list-item-wrap").children("input"), "interest"));
+    $("#sendLanguagesToServer").val(generateDataString($(".list-item-wrap").children("input"), "language"));
   });
 
   function generateDataString(inputs, inputType) {
@@ -48,4 +43,53 @@
       $("#DOP").removeClass("disable");
     }
   });
+
+  // drag and drop
+  function dragContainerEvents(container, draggingClass) {
+    container.on("dragover", (event) => {
+      event.preventDefault();
+      const dropPlacement = getDropPlacement(container[0], event.clientY, draggingClass);
+      const draggableItem = document.querySelector(`.${draggingClass}`);
+      if (dropPlacement == null) {
+        container[0].appendChild(draggableItem);
+      }
+      else {
+        container[0].insertBefore(draggableItem, dropPlacement);
+      }
+    });
+  }
+
+  function getDropPlacement(container, mouseY, draggingClass) {
+    // an array of all draggable elements in the container that aren't currently being dragged
+    const draggableElements = [...container.querySelectorAll(`.draggable:not(.${draggingClass})`)];
+
+    return draggableElements.reduce((closest, child) => {
+      const box = child.getBoundingClientRect();
+      const offset = mouseY - box.top - box.height / 2;
+      if (offset < 0 && offset > closest.offset) {
+        return { offset: offset, element: child }
+      }
+      else {
+        return closest;
+      }
+    }, { offset: Number.NEGATIVE_INFINITY }).element;
+  }
+
+  // initialize events
+  refreshListItemEvents();
+
+  $(".add-input").on("click", (event) => {
+    $(event.target).parent().next().append(`
+      <div class="list-item-wrap draggable" draggable="true">
+        <input type="text" placeholder="${$(event.target).attr("data-placeholder")}" />
+        <img tabindex="0" src="/icons/X_512x512.png" class="del-input" />
+      </div>
+    `);
+    refreshListItemEvents();
+  });
+
+  dragContainerEvents($(".child-drag-container"), "child-dragging");
+  dragContainerEvents($(".city-drag-container"), "city-dragging");
+  dragContainerEvents($(".interest-drag-container"), "interest-dragging");
+  dragContainerEvents($(".language-drag-container"), "language-dragging");
 });

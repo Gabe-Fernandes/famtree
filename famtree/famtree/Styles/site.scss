@@ -137,6 +137,13 @@ select {
   filter: blur(0.2em);
 }
 
+.draggable {
+  cursor: move;
+}
+.dragging {
+  opacity: 0.5;
+}
+
 .err-input {
   border: 0.2em solid $cWarning;
   box-shadow: 0 0 0.1em 0.1em $cWarning;

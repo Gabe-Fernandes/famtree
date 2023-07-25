@@ -21,11 +21,14 @@
       margin: 0vh 1vw;
       cursor: pointer;
     }
-    .list-item-wrap {
+    .list-item-wrap, .list-header-wrap {
       @include Flex-Row(center, center, 100%, 100%);
     }
     .list-wrap {
       @include Flex-Col(center, center, 100%, 100%);
+    }
+    .child-dragging, .city-dragging, .interest-dragging, .language-dragging {
+      opacity: 0.5;
     }
   }
 }
