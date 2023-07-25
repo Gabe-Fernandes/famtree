@@ -10,8 +10,8 @@ public class FamilyMember
   public string FirstName { get; set; }
   public string LastName { get; set; }
   public string Nickname { get; set; }
-  public DateTime DOB { get; set; }
-  public DateTime DOP { get; set; }
+  public DateTime? DOB { get; set; }
+  public DateTime? DOP { get; set; }
   public bool IsAlive { get; set; }
   public string Occupation { get; set; }
   public string Pfp { get; set; }

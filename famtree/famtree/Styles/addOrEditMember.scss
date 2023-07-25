@@ -3,7 +3,7 @@
 #addOrEditMember {
   form {
     @include Flex-Col(center, center, 50vw, 100%);
-    margin: 0 auto;
+    margin: 0vh auto 5vh;
     input {
       border-radius: 0.65rem;
       margin: 1vh 0vw;
@@ -15,6 +15,17 @@
       margin: 2vh 0vw;
       text-indent: 2%;
       padding: 1%;
+    }
+    img {
+      @include Img-Round(1.7rem);
+      margin: 0vh 1vw;
+      cursor: pointer;
+    }
+    .list-item-wrap {
+      @include Flex-Row(center, center, 100%, 100%);
+    }
+    .list-wrap {
+      @include Flex-Col(center, center, 100%, 100%);
     }
   }
 }

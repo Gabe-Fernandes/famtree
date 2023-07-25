@@ -11,19 +11,15 @@ public static class Str
   public const string BtnText = "FamBtnText";
 
   // Array storage in strings
-  public const string divider = "_____&_____";
+  public const string delimiter = "_____&_____";
 
   public static List<string> ExtractData(string data)
   {
+    if (string.IsNullOrEmpty(data)) { return null; }
+
     List<string> extractedList = new();
-
-    if (data == null)
-    {
-      extractedList.Add("");
-      return extractedList;
-    }
-
     string extractedElement = "";
+
     for (int i = 0; i < data.Length; i++)
     {
       if (CheckForDivider(data, i))
@@ -43,9 +39,9 @@ public static class Str
 
   private static bool CheckForDivider(string data, int index)
   {
-    for (int i = 0; i < divider.Length; i++)
+    for (int i = 0; i < delimiter.Length; i++)
     {
-      if (divider[i] != data[index]) { return false; }
+      if (delimiter[i] != data[index]) { return false; }
       index++;
     }
     return true;

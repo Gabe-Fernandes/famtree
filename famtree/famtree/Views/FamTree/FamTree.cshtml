@@ -15,15 +15,15 @@
     @{
       for (int i = 0; i < fam.Count; i++)
       {
-        string dateOfPassing = (fam[i].IsAlive) ? "present" : @fam[i].DOP.ToString("d");
+        string dateOfPassing = (fam[i].IsAlive) ? "present" : fam[i].DOP?.ToString("d");
         string nickname = string.IsNullOrEmpty(fam[i].Nickname) ? "" : $"\"{fam[i].Nickname}\"";
-        citiesLived = Str.ExtractData(fam[i].CitiesLived);
+        citiesLived = Str.ExtractData(fam[i].CitiesLived) ?? new() { "N/A" };
 
         <div class="member-card" data-index="@i">
           <div>@fam[i].FirstName @fam[i].LastName</div>
           <div>@nickname</div>
           <img src="@fam[i].Pfp">
-          <div>@fam[i].DOB.ToString("d") - @dateOfPassing</div>
+          <div>@fam[i].DOB?.ToString("d") - @dateOfPassing</div>
         </div>
 
         <section id="modal_@i" class="screen-tint hide">
@@ -34,7 +34,7 @@
                 <div>@nickname</div>
                 <img src="@fam[i].Pfp">
 
-                <div>@fam[i].DOB.ToString("d") - @dateOfPassing</div>
+                <div>@fam[i].DOB?.ToString("d") - @dateOfPassing</div>
               </div>
 
               <div class="right-div">

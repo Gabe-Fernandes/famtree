@@ -48,7 +48,8 @@ public class FamTreeController : Controller
 
   public IActionResult AddMember()
   {
-    return View();
+    FamilyMember member = new();
+    return View(member);
   }
 
   [HttpPost]

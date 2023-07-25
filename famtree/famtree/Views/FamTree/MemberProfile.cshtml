@@ -4,10 +4,12 @@
 @{
   ViewData["Title"] = "Profile";
 
-  List<string> children = Str.ExtractData(Model.Children);
-  List<string> citiesLived = Str.ExtractData(Model.CitiesLived);
-  List<string> interests = Str.ExtractData(Model.Interests);
-  List<string> languages = Str.ExtractData(Model.LanguagesSpoken);
+  List<string> children = Str.ExtractData(Model.Children) ?? new() { "N/A" };
+  List<string> citiesLived = Str.ExtractData(Model.CitiesLived) ?? new() { "N/A" };
+  List<string> interests = Str.ExtractData(Model.Interests) ?? new() { "N/A" };
+  List<string> languages = Str.ExtractData(Model.LanguagesSpoken) ?? new() { "N/A" };
+
+  string dateOfPassing = (Model.IsAlive) ? "present" : Model.DOP?.ToString("d");
 
   //string partnersName = (string)ViewData["partner"];
 }
@@ -27,7 +29,7 @@
 
   <div class="pfp-div">
     <img src="@Model.Pfp">
-    <div>@Model.DOB.ToString("d") - @Model.DOP.ToString("d")</div>
+    <div>@Model.DOB?.ToString("d") - @dateOfPassing</div>
     <div><u>Born:</u> @Model.BirthLocation</div>
     <div><u>Partner:</u> @Model.PartnersName</div>
     <div><u>Occupation:</u> @Model.Occupation</div>

@@ -1,10 +1,17 @@
-﻿@model FamilyMember;
-@using famtree.Services;
+﻿@using famtree.Services;
+@model FamilyMember;
 
 @{
   string aspAction = (string)ViewData[Str.AspAction];
   string btnText = (string)ViewData[Str.BtnText];
+
+  List<string> children = Str.ExtractData(Model.Children) ?? new();
+  List<string> citiesLived = Str.ExtractData(Model.CitiesLived) ?? new();
+  List<string> interests = Str.ExtractData(Model.Interests) ?? new();
+  List<string> languages = Str.ExtractData(Model.LanguagesSpoken) ?? new();
 }
+
+<script async src="/js/_addOrEditMember.js"></script>
 
 <div id="addOrEditMember">
 
@@ -12,7 +19,7 @@
     <h1>Add Family Member</h1>
   </div>
 
-  <form method="post" asp-controller="FamTree" asp-action="@aspAction">
+  <form method="post" asp-controller="FamTree" asp-action="@aspAction" id="famMemberForm">
     <input asp-for="Id" type="hidden" />
 
     <input asp-for="FirstName" type="text" placeholder="first name" />
@@ -22,14 +29,84 @@
     <label>Date of Birth</label>
     <input asp-for="DOB" type="date" />
     <label>Date of Passing</label>
-    <input asp-for="DOP" type="date" />
-    <label>Has not passed</label><input asp-for="IsAlive" type="checkbox" />
+    <input asp-for="DOP" type="date" id="DOP" class="disable" />
+    <label>Has not passed</label><input asp-for="IsAlive" type="checkbox" id="isAliveCheckbox" checked />
     <!--
       <input asp-for="PartnerId" type="text" placeholder="partner" />
     -->
     <input asp-for="BirthLocation" type="text" placeholder="city of birth" />
     <input asp-for="Occupation" type="text" placeholder="occupation" />
     <input asp-for="PartnersName" type="text" placeholder="partner" />
+
+    <br>
+
+    <div class="list-item-wrap">
+      <label>Children:</label>
+      <img tabindex="0" src="/icons/Plus.png" class="add-input" data-placeholder="children" />
+    </div>
+    <div class="list-wrap">
+      @for (int i = 0; i < children.Count; i++)
+      {
+        <div class="list-item-wrap">
+          <input type="text" placeholder="children" value="@children[i]" />
+          <img tabindex="0" src="/icons/X_512x512.png" class="del-input" />
+        </div>
+      }
+    </div>
+    <input id="sendChildrenToServer" asp-for="Children" type="hidden" />
+
+    <br>
+
+    <div hidden id="dataFromServer" data-delimiter="@Str.delimiter"></div>
+
+    <div class="list-item-wrap">
+      <label>Cities Lived:</label>
+      <img tabindex="0" src="/icons/Plus.png" class="add-input" data-placeholder="cities lived in" />
+    </div>
+    <div class="list-wrap">
+      @for (int i = 0; i < citiesLived.Count; i++)
+      {
+        <div class="list-item-wrap">
+          <input type="text" placeholder="cities lived in" value="@citiesLived[i]" />
+          <img tabindex="0" src="/icons/X_512x512.png" class="del-input" />
+        </div>
+      }
+    </div>
+    <input id="sendCitiesToServer" asp-for="CitiesLived" type="hidden" />
+
+    <br>
+
+    <div class="list-item-wrap">
+      <label>Interests:</label>
+      <img tabindex="0" src="/icons/Plus.png" class="add-input" data-placeholder="interests" />
+    </div>
+    <div class="list-wrap">
+      @for (int i = 0; i < interests.Count; i++)
+      {
+        <div class="list-item-wrap">
+          <input type="text" placeholder="interests" value="@interests[i]" />
+          <img tabindex="0" src="/icons/X_512x512.png" class="del-input" />
+        </div>
+      }
+    </div>
+    <input id="sendInterestsToServer" asp-for="Interests" type="hidden" />
+
+    <br>
+
+    <div class="list-item-wrap">
+      <label>Languages Spoken:</label>
+      <img tabindex="0" src="/icons/Plus.png" class="add-input" data-placeholder="languages spoken" />
+    </div>
+    <div class="list-wrap">
+      @for (int i = 0; i < languages.Count; i++)
+      {
+        <div class="list-item-wrap">
+          <input type="text" placeholder="languages spoken" value="@languages[i]" />
+          <img tabindex="0" src="/icons/X_512x512.png" class="del-input" />
+        </div>
+      }
+    </div>
+    <input id="sendLanguagesToServer" asp-for="LanguagesSpoken" type="hidden" />
 
     <br>
     <label>Education:</label>
